@@ -20,7 +20,7 @@ public class MultipartRequest {
 
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
 
-    public void sendMultipartRequest(String url, Map<String, String> headers, Map<String, String> fields, ArrayList<Object> files, Map<String, int> timeout, ProgressRequestBody.Listener listener) throws Exception {
+    public void sendMultipartRequest(String url, Map<String, String> headers, Map<String, String> fields, ArrayList<Object> files, Map<String, Integer> timeout, ProgressRequestBody.Listener listener) throws Exception {
         OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(timeout.get("connect"), TimeUnit.MILLISECONDS)
             .readTimeout(timeout.get("read"), TimeUnit.MILLISECONDS)
