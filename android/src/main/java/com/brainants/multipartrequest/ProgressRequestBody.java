@@ -61,6 +61,6 @@ public class ProgressRequestBody extends RequestBody {
     public interface Listener {
         void onProgress(int progress);
         void onComplete(String response);
-        void onError();
+        void onError(String response);
     }
 }
