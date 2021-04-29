@@ -78,7 +78,7 @@ class MultipartRequest {
           controller.close();
           break;
         case "error":
-          response.onError();
+          response.onError(handler.arguments);
           controller.close();
 
           break;
