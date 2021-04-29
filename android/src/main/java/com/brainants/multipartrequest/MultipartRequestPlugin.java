@@ -34,7 +34,7 @@ public class MultipartRequestPlugin implements MethodCallHandler {
             final Map<String, String> headers = (Map<String, String>) arguments.get("headers");
             final Map<String, String> fields = (Map<String, String>) arguments.get("fields");
             final ArrayList<Object> files = (ArrayList<Object>) arguments.get("files");
-            final Map<String, String> timeout = (Map<String, String>) arguments.get("timeout");
+            final Map<String, Integer> timeout = (Map<String, Integer>) arguments.get("timeout");
 
             new AsyncTask<Void, Void, Void>() {
                 @SuppressWarnings("unchecked")
