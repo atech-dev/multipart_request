@@ -34,13 +34,14 @@ public class MultipartRequestPlugin implements MethodCallHandler {
             final Map<String, String> headers = (Map<String, String>) arguments.get("headers");
             final Map<String, String> fields = (Map<String, String>) arguments.get("fields");
             final ArrayList<Object> files = (ArrayList<Object>) arguments.get("files");
+            final Map<String, String> timeout = (Map<String, String>) arguments.get("timeout");
 
             new AsyncTask<Void, Void, Void>() {
                 @SuppressWarnings("unchecked")
                 @Override
                 protected Void doInBackground(Void... voids) {
                     try {
-                        new MultipartRequest().sendMultipartRequest(url, headers, fields, files, new ProgressRequestBody.Listener() {
+                        new MultipartRequest().sendMultipartRequest(url, headers, fields, files, timeout, new ProgressRequestBody.Listener() {
                             @Override
                             public void onProgress(final int progress) {
                                 activity.runOnUiThread(new Runnable() {
@@ -62,11 +63,11 @@ public class MultipartRequestPlugin implements MethodCallHandler {
                             }
 
                             @Override
-                            public void onError() {
+                            public void onError(final String response) {
                                 activity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        channel.invokeMethod("error", "");
+                                        channel.invokeMethod("error", response);
                                     }
                                 });
                             }
